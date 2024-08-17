@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>title</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Put your description here.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+   <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0; 
+            padding: 0; 
+            background-color: #fff; 
+            color: #000;
+            overflow-x: hidden;
+        }
+        * {
+            box-sizing: border-box; 
+            margin: 0;
+            padding: 0; 
+        }
+        .icon-warning{
+            display: inline-block;
+            width: 12px;
+            height: 11px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTEiIHZpZXdCb3g9IjAgMCAxMiAxMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzExXzQpIj4KPHBhdGggZD0iTTAuMjI5MjkyIDguMzI1NjhMNC40MjIzMSAxLjAwNTgzTDQuNDM4OTEgMC45NzkyMDJDNC42MTE2NCAwLjY5MzM0OSA0Ljg0NTExIDAuNDQ5ODI4IDUuMTIyNDUgMC4yNjYyNDhDNS4zODgxNyAwLjA5MzczODEgNS42OTcxMSAwLjAwMTM3MzE3IDYuMDEzIDBDNi4zMjg2NCA1LjAyNTA2ZS0wNSA2LjYzNzU0IDAuMDkyMTYyMiA2LjkwMjU4IDAuMjY1MjYyQzcuMTgwNTEgMC40NDkzNTYgNy40MTQwNyAwLjY5Mzk4MyA3LjU4NjEyIDAuOTgxMTc0QzcuNTk4ODEgMS4wMDE4OCA3LjYxMDUzIDEuMDIyNTkgNy42MjEyNyAxLjA0NDI5TDExLjc0NTkgOC4yNzYzOEwxMS43Njg0IDguMzE5NzdDMTEuOTIzNiA4LjYzMTM0IDEyLjAwMyA4Ljk3NTgzIDExLjk5OTggOS4zMjQ2MUMxMS45OTgzIDkuNjEyNSAxMS45MjU4IDkuODk1NDcgMTEuNzg4OSAxMC4xNDhDMTEuNjM0MyAxMC40MzAxIDExLjM5NzggMTAuNjU3NiAxMS4xMTEyIDEwLjc5OThMMTEuMDU0NiAxMC44MjU1QzEwLjc3NDEgMTAuOTQ3OCAxMC40NzA0IDExLjAwNjQgMTAuMTY1IDEwLjk5N0gxLjcyMDM4QzEuNjk3OTIgMTAuOTk3IDEuNjc3NDIgMTAuOTk3IDEuNjU1OTMgMTAuOTk3QzEuNDQ5MTEgMTAuOTk1NCAxLjI0NDE4IDEwLjk1NyAxLjA1MDUxIDEwLjg4MzZDMC43NDI4MTEgMTAuNzY1OSAwLjQ3ODMxNyAxMC41NTU2IDAuMjkyNzYzIDEwLjI4MTFDMC4xMDYzMTkgMTAuMDAxNyAwLjAwNDUyNDQgOS42NzMzOSAtMC4wMDAxODE3MTMgOS4zMzY0NEMtMC4wMDUwMDIzOSA5LjA0MTgzIDAuMDQ3MDcwNiA4Ljc0OTA5IDAuMTUzMTI2IDguNDc0NTlDMC4xNzMwNTQgOC40MjI0NyAwLjE5ODI1IDguMzcyNTggMC4yMjgzMTUgOC4zMjU2OEgwLjIyOTI5MloiIGZpbGw9IiNCNzE2MTYiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wLjg3ODc4IDguNzUyNjdMNS4wOTIzIDEuMzk2MzJDNS42MDMwMSAwLjU4Mjc4NyA2LjQxMzQ5IDAuNTYyMDc5IDYuOTM0OTMgMS4zOTYzMkwxMS4wNzkxIDguNjYzOTJDMTEuNDA5MiA5LjMzNTQ1IDExLjI0NTEgMTAuMjQxNyAxMC4xNjcxIDEwLjIxOUgxLjcyMDUxQzEuMDEwNjEgMTAuMjM2OCAwLjU0ODcyOSA5LjYwODYxIDAuODc2ODI3IDguNzUyNjdIMC44Nzg3OFoiIGZpbGw9IiNFMjFCMUIiLz4KPHBhdGggZD0iTTUuNjIxNiA4LjE1NTFDNS43MTI4NCA4LjA2Mzg5IDUuODMzMzcgOC4wMDg2MiA1Ljk2MTQyIDcuOTk5M0M2LjA0MTA4IDcuOTkzODQgNi4xMjA5NyA4LjAwNTYxIDYuMTk1NzcgOC4wMzM4MUM2LjI2OTAyIDguMDYyNzYgNi4zMzU1MiA4LjEwNjc0IDYuMzkxMDcgOC4xNjI5OUM2LjQ4NDE3IDguMjU2MzkgNi41NDA0IDguMzgwODMgNi41NDkyNiA4LjUxMzA2QzYuNTUxOTYgOC41NTkyMiA2LjU0OTM0IDguNjA1NTUgNi41NDE0NSA4LjY1MTExQzYuNTE5MzUgOC43ODExMyA2LjQ1MTQyIDguODk4NjggNi4zNTAxOSA4Ljk4MjA1QzYuMjQ4OTYgOS4wNjU0MyA2LjEyMTI3IDkuMTA5IDUuOTkwNzEgOS4xMDQ3MkM1LjkxNDExIDkuMTAzMyA1LjgzODYzIDkuMDg1ODQgNS43NjkwNSA5LjA1MzQ0QzUuNjQ0MjUgOC45OTU0NiA1LjU0NTg1IDguODkxODcgNS40OTM2OCA4Ljc2MzUzQzUuNDc3NDkgOC43MjMyNyA1LjQ2NjAyIDguNjgxMjQgNS40NTk1MSA4LjYzODI5QzUuNDUyNzUgOC41OTU1OSA1LjQ1MDc4IDguNTUyMjYgNS40NTM2NSA4LjUwOTExQzUuNDYxMDUgOC40NDA2NyA1LjQ3OTg3IDguMzczOTkgNS41MDkzMSA4LjMxMTg5QzUuNTM0ODUgOC4yNTMyOCA1LjU3MjQ2IDguMjAwODQgNS42MTk2NSA4LjE1ODA2TDUuNjIxNiA4LjE1NTFaTTYuNDE4NDEgNy4xNDUzM0M2LjM5ODg4IDcuNjE3NjcgNS42MDY5NSA3LjYxODY2IDUuNTg4NCA3LjE0NTMzQzUuNTA4MzMgNi4zMzU3NCA1LjMwMzI3IDQuMjQ3MTcgNS4zMTAxIDMuNDg2ODhDNS4zMTY5NCAzLjI1MjE5IDUuNTA1NCAzLjExMzE1IDUuNzU1MzggMy4wNTk5QzUuOTE2NTUgMy4wMjc1NiA2LjA4MjQ1IDMuMDI3NTYgNi4yNDM2MiAzLjA1OTlDNi40OTg0OCAzLjExNTEyIDYuNjk3NjkgMy4yNTcxMiA2LjY5NzY5IDMuNDk3NzNWMy41MjEzOUw2LjQxODQxIDcuMTQ1MzNaIiBmaWxsPSJ3aGl0ZSIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzExXzQiPgo8cmVjdCB3aWR0aD0iMTIiIGhlaWdodD0iMTEiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            margin-right: 7px;
+        }
+        .icon-hourglass{
+            position: absolute;
+            top: 2px;
+            right: 0px;
+            display: flex;
+            width: 9px;
+            height: 12px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMCAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAuNzQ1MjQgMS41Mjk2OUMwLjYxMDE1NSAxLjQ5NzkyIDAuNTA5NDkyIDEuMzc2OTEgMC41MDk0OTIgMS4yMzIxM1YwLjMwNTk2OEMwLjUwOTQ5MiAwLjEzNzAyMyAwLjY0NjUxNCAwIDAuODE1NDU5IDBIOS4xODQzOUM5LjM1MzMzIDAgOS40OTAzNiAwLjEzNzAyMyA5LjQ5MDM2IDAuMzA1OTY4VjEuMjMyMThDOS40OTAzNiAxLjM3Njk2IDkuMzg5NjkgMS40OTc5NyA5LjI1NDYxIDEuNTI5NzRDOS4xNjIyMSAzLjE3NzU4IDguMzA2NDEgNC42ODc3MyA2LjkyNTA3IDUuNjEzMThMNi4zNDc2MSA2LjAwMDAzTDYuOTI1MDcgNi4zODY4N0M4LjMwNjQ3IDcuMzEyMjcgOS4xNjIyNiA4LjgyMjQ4IDkuMjU0NjEgMTAuNDcwM0M5LjM4OTY5IDEwLjUwMjEgOS40OTAzNiAxMC42MjMxIDkuNDkwMzYgMTAuNzY3OVYxMS42OTQxQzkuNDkwMzYgMTEuODYzIDkuMzUzMzMgMTIuMDAwMSA5LjE4NDM5IDEyLjAwMDFIMC44MTU0NTlDMC42NDY1MTQgMTIuMDAwMSAwLjUwOTQ5MiAxMS44NjMgMC41MDk0OTIgMTEuNjk0MVYxMC43Njc5QzAuNTA5NDkyIDEwLjYyMzEgMC42MTAxNTUgMTAuNTAyMSAwLjc0NTI0IDEwLjQ3MDNDMC44Mzc2NDIgOC44MjI0OCAxLjY5MzQzIDcuMzEyMzIgMy4wNzQ4MyA2LjM4Njg3TDMuNjUyMjkgNi4wMDAwM0wzLjA3NDgzIDUuNjEzMThDMS42OTM0MyA0LjY4NzczIDAuODM3NjQyIDMuMTc3NTMgMC43NDUyNCAxLjUyOTY5Wk04Ljg3ODQyIDAuNjExOTM1SDEuMTIxNDNWMC45MjYyMTVIOC44Nzg0MlYwLjYxMTkzNVpNMS4xMjE0MyAxMS4zODgxSDguODc4NDJWMTEuMDczOEgxLjEyMTQzVjExLjM4ODFaTTQuMzcyMjggNS43NDU4MkM0LjQ1NzA5IDUuODAyNjMgNC41MDc5OCA1Ljg5NzkzIDQuNTA3OTggNi4wMDAwM0M0LjUwNzk4IDYuMTAyMTIgNC40NTcwOSA2LjE5NzQzIDQuMzcyMjggNi4yNTQyM0wzLjQxNTM3IDYuODk1MjlDMi4yMDYyOSA3LjcwNTIzIDEuNDUyNTkgOS4wMjIwMiAxLjM1ODYgMTAuNDYxOUg4LjY0MTI1QzguNTQ3MjYgOS4wMjIwNyA3Ljc5MzU2IDcuNzA1MjkgNi41ODQ0OCA2Ljg5NTI5TDUuNjI3NTcgNi4yNTQyM0M1LjU0Mjc2IDYuMTk3NDMgNS40OTE4NyA2LjEwMjEyIDUuNDkxODcgNi4wMDAwM0M1LjQ5MTg3IDUuODk3OTMgNS41NDI3NiA1LjgwMjYzIDUuNjI3NTcgNS43NDU4Mkw2LjU4NDQ4IDUuMTA0NzZDNy43OTM1NiA0LjI5NDc3IDguNTQ3MjYgMi45Nzc5OCA4LjY0MTI1IDEuNTM4MTVIMS4zNTg2QzEuNDUyNTkgMi45NzgwMyAyLjIwNjI5IDQuMjk0NzcgMy40MTUzNyA1LjEwNDc2TDQuMzcyMjggNS43NDU4MloiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik01LjEzNjg4IDcuMDI4ODlMNi4zMzAyOCA3LjYxMzY0QzcuMzczNzQgOC4xNDY4OCA4IDkuMDQxOTEgOCAxMEgyQzIgOS4wNDE5MSAyLjYyNjI2IDguMTQ2ODggMy42Njk3MiA3LjYxMzY0TDQuODYzMTIgNy4wMjg4OUM0Ljk0NzM0IDYuOTkwMzcgNS4wNTI1OCA2Ljk5MDM3IDUuMTM2ODggNy4wMjg4OVoiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            margin-right: 7px;
+        }
+        .status {padding-left: 12px; font-size: 10px;color: #A0A0A0;position: relative;}
+        .status.red:before{background-color: #FF0000;}
+        .status.yellow:before{background-color: #FFDD21;}
+        .status.green:before{background-color: #45D94C;}
+        .status:before{
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            left: 0;
+            top: 2px;
+            border-radius: 100%;
+        }
+        .deal__table{
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+        .deal__row{
+            display: flex;
+            width: 100%;
+            height: calc(100vh - 20px);
+            overflow: auto;
+        }
+        .deal__row::-webkit-scrollbar {
+            width: 4px;
+            border-radius: 10px
+        }
+        .deal__row::-webkit-scrollbar-track {
+            background: #eeeded
+        }
+        .deal__row::-webkit-scrollbar-thumb {
+            background-color: rgba(58, 54, 54, 0.39);
+            border-radius: 0;
+            cursor: pointer;
+        }
+        .deal__col{
+            width: 100%;
+            min-width: 365px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+       
+        @media (min-width: 1400px) {
+            .deal__col{
+                min-width: 20%;
+            }
+        }
+        @media (min-width: 1600px) {
+            .deal__col{
+                min-width: 12.5%;
+            }
+        }
+       
+        .deal__box{
+            width: 100%;
+            height: 100%;
+        }
+        .deal__col[data-bg="blue"] .deal__col-head{background-color: #A2CAFA;}
+        .deal__col[data-bg="blue"] .deal{border-color: #A2CAFA;}
+
+        .deal__col[data-bg="light-yellow"] .deal__col-head{background-color: #FFFEBB;}
+        .deal__col[data-bg="light-yellow"] .deal{border-color: #FFFEBB;}
+
+        .deal__col[data-bg="yellow"] .deal__col-head{background-color: #FFFD90;}
+        .deal__col[data-bg="yellow"] .deal{border-color: #FFFD90;}
+
+        .deal__col[data-bg="orange"] .deal__col-head{background-color: #F7D06D;}
+        .deal__col[data-bg="orange"] .deal{border-color: #F7D06D;}
+
+        .deal__col[data-bg="pink"] .deal__col-head{background-color: #F7CAC9;}
+        .deal__col[data-bg="pink"] .deal{border-color: #F7CAC9;}
+        
+        .deal__col[data-bg="green"] .deal__col-head{background-color: rgb(54, 218, 54);}
+        .deal__col[data-bg="green"] .deal{border-color: rgb(54, 218, 54);}
+
+        .deal__col ::-webkit-scrollbar {
+            width: 4px;
+            border-radius: 10px
+        }
+        .deal__col ::-webkit-scrollbar-track {
+            background: #eeeded
+        }
+        .deal__col ::-webkit-scrollbar-thumb {
+            background-color: rgba(58, 54, 54, 0.151);
+            border-radius: 0
+        }
+        .deal__col-wrap{
+            overflow: auto;
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            padding-bottom: 80px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .deal__col-head{
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            text-align: center;
+            padding: 10px 20px;
+            height: 79px;
+            box-shadow: -2px 1px 7px rgba(0, 0, 0, 0.11);
+            width: calc(100% - 10px);
+            margin: auto;
+            
+        }
+        .deal__head-title{
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+        .deal__head-price{
+            font-size: 14px;
+        }
+        .deal__head-price span{
+            display: inline-block;
+            width: 100%;
+        }
+        .deal{
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: -2px 1px 7px rgba(0, 0, 0, 0.11);
+            border-bottom: solid 5px;
+            margin: 5px 0;
+            font-size: 12.5px;
+            transition: 0.3s;
+            cursor: all-scroll;
+        }
+        .deal:hover{background-color: rgba(0, 0, 0, 0.116);}
+        .deal.clicked {background-color: #FA8BFF;background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);}
+        .deal.clicked *{color: #fff!important;text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.788);}
+        .deal__title{position: relative; display: inline-block; margin-bottom: 5px; overflow: hidden;white-space: nowrap; text-overflow: ellipsis;width: 100%; padding-right: 22px;  font-size: 15px;font-weight: 700;margin-bottom: 0;}
+        .deal__name{color: #A0A0A0;}
+        .deal__name a{color: #A0A0A0;text-underline-position: under;}
+        .deal__price{display: flex;justify-content: space-between;}
+        .deal__organization{color: #000;}
+    </style> 
+</head>
+<body>
+    
+    <div class="deal__table">
+        <div class="deal__row">
+              <div class="deal__col" data-bg="blue" id="column1" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+                <div class="deal__box" style="z-index:1000" draggable="true" id="box1" ondragstart="drag(event)">
+                    <div class="deal__col-head">
+                        <div class="deal__head-title">Первичный контакт </div>
+                        <div class="deal__head-price">
+                            <span>9 шт.</span>
+                            <span>1 505 940 RUB</span>
+                        </div>
+                    </div>
+                  <div class="deal__col-wrap">
+                    <div class="deal" tabindex="1" id="card1" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт asdasdasdasd</p>
+                        <div class="deal__price">1 000 000 RUB <span class="status red">Просрочено 1</span></div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card2" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB <span class="status yellow">Сегодня 1</span></div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card3" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Икар - 09.06.2023 13:50:49, 415 200,6 RUB <i class="icon-loading"></i></p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card4" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title"><i class="icon-warning"></i>Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card5" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт... <i class="icon-hourglass"></i></p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card6" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card7" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card8" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="deal__col" data-bg="light-yellow" id="column2" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+                <div class="deal__box" draggable="true" id="box2" ondragstart="drag(event)" >
+                    <div class="deal__col-head">
+                        <div class="deal__head-title">Первичный контакт </div>
+                        <div class="deal__head-price">
+                            <span>9 шт.</span>
+                            <span>1 505 940 RUB</span>
+                        </div>
+                    </div>
+                  <div class="deal__col-wrap">
+                    <div class="deal" tabindex="1" id="card9" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card10" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card11" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card12" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card13" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="deal__col" data-bg="yellow" id="column3" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+                <div class="deal__box" draggable="true" id="box3" ondragstart="drag(event)" >
+                    <div class="deal__col-head">
+                        <div class="deal__head-title">Первичный контакт </div>
+                        <div class="deal__head-price">
+                            <span>9 шт.</span>
+                            <span>1 505 940 RUB</span>
+                        </div>
+                    </div>
+                  <div class="deal__col-wrap">
+                    <div class="deal" tabindex="1" id="card14" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card15" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card16" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card17" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card18" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card19" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="deal__col" data-bg="orange" id="column4" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+                <div class="deal__box" draggable="true" id="box4" ondragstart="drag(event)" >
+                    <div class="deal__col-head">
+                        <div class="deal__head-title">Первичный контакт </div>
+                        <div class="deal__head-price">
+                            <span>9 шт.</span>
+                            <span>1 505 940 RUB</span>
+                        </div>
+                    </div>
+                  <div class="deal__col-wrap">
+                    <div class="deal" tabindex="1" id="card20" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB <span class="status green">На будущее 1</span></div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card21" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card22" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card23" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB  <span class="status yellow">Сегодня 1</span></div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card24" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card25" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович</div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="deal__col" data-bg="pink" id="column5" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+                <div class="deal__box" draggable="true" id="box5" ondragstart="drag(event)" >
+                    <div class="deal__col-head">
+                        <div class="deal__head-title">Первичный контакт </div>
+                        <div class="deal__head-price">
+                            <span>9 шт.</span>
+                            <span>1 505 940 RUB</span>
+                        </div>
+                    </div>
+                  <div class="deal__col-wrap">
+                    <div class="deal" tabindex="1" id="card26" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card27" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card28" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card29" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card30" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card31" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card32" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт... <i class="icon-hourglass"></i></p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card33" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title"><i class="icon-warning"></i>Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="deal__col" data-bg="green" id="column6" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+                <div class="deal__box" draggable="true" id="box6" ondragstart="drag(event)" >
+                    <div class="deal__col-head">
+                        <div class="deal__head-title">Первичный контакт </div>
+                        <div class="deal__head-price">
+                            <span>9 шт.</span>
+                            <span>1 505 940 RUB</span>
+                        </div>
+                    </div>
+                  <div class="deal__col-wrap">
+                    <div class="deal" tabindex="1" id="card34" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card35" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card36" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card37" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card38" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card39" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card40" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт... <i class="icon-hourglass"></i></p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card41" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title"><i class="icon-warning"></i>Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="deal__col" data-bg="green" id="column7" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+                <div class="deal__box" draggable="true" id="box7" ondragstart="drag(event)" >
+                    <div class="deal__col-head">
+                        <div class="deal__head-title">Первичный контакт </div>
+                        <div class="deal__head-price">
+                            <span>9 шт.</span>
+                            <span>1 505 940 RUB</span>
+                        </div>
+                    </div>
+                  <div class="deal__col-wrap">
+                    <div class="deal" tabindex="1" id="card42" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card43" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card44" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card45" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card46" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card47" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card48" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title">Гостиница "Заря" от 21.11.2023 (Создана авт... <i class="icon-hourglass"></i></p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div>
+                    <div class="deal" tabindex="1" id="card49" draggable="true"  ondragstart="drag(event)">
+                        <p class="deal__title"><i class="icon-warning"></i>Гостиница "Заря" от 21.11.2023 (Создана авт...</p>
+                        <div class="deal__price">1 000 000 RUB</div>
+                        <div class="deal__name">Орлов Александр Владимирович <a href="#">и ещё 2 чел.</a></div>
+                        <div class="deal__organization">Гостиница "Заря"</div>
+                        <div class="deal__name">Севастьянов Алексей Владимирович</div>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <script>
+
+        /* TOGGLE CLICK */
+        var deal = document.querySelectorAll(".deal");
+        for (let i = 0; i < deal.length; i++) {
+            deal[i].addEventListener("click", () => {
+                for (let j = 0; j < deal.length; j++) {
+                    if (i == j) {
+                        deal[j].classList = deal[j].classList.contains('clicked') ? "deal" : "deal clicked";
+                    } else {
+                        deal[j].classList.remove('clicked')
+                    }
+                }
+            });
+        }
+        // DRAG AN DROP 
+        // allowDrop 
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        // drag 
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        // drop 
+        function drop(target , ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var dest = target.querySelector(".deal__col-wrap"); 
+        
+            if(document.getElementById(data).className == "deal__box"){
+                if(target.className == "deal__col"){
+                var dest = target;
+                }
+                if(target.className == "deal" || target.className == "deal clicked"){
+                    var dest = target.parentNode; 
+                }
+                
+                if(Array.prototype.indexOf.call(document.getElementById(data).parentNode.parentNode.children, document.getElementById(data).parentNode) > Array.prototype.indexOf.call(dest.parentNode.children, dest)){
+                    insertBefore(document.getElementById(data).parentNode,dest);
+                }else{
+                    insertAfter(document.getElementById(data).parentNode,dest);
+                }           
+
+            }
+
+            if(document.getElementById(data).className == "deal" || document.getElementById(data).className == "deal clicked"){
+                if(ev.target.className != "deal" || ev.target.className != "deal clicked"){
+                    var up = ev.target.parentNode.getAttribute('id');
+                }else{
+                    var up = ev.target.getAttribute('id');
+                } 
+                
+                if (up == null || ev.target.className == "deal__box" || ev.target.className == "deal__col-head"  || ev.target.className == "deal__col") {
+                    dest.appendChild(document.getElementById(data));
+                }else if(document.getElementById(up).className == "deal" || document.getElementById(up).className == "deal clicked"){
+                    if(Array.prototype.indexOf.call(document.getElementById(data).parentNode.children, document.getElementById(data)) > Array.prototype.indexOf.call(document.getElementById(up).parentNode.children, document.getElementById(up))){
+                        insertBefore(document.getElementById(data),document.getElementById(up));
+                    }else{
+                        insertAfter(document.getElementById(data),document.getElementById(up));
+                    }        
+                }
+                
+            }
+
+        }
+        // insertAfter 
+        function insertAfter(newNode, referenceNode) {
+            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+        }
+        // inserBefore 
+        function insertBefore(newNode, referenceNode) {
+            referenceNode.parentNode.insertBefore(newNode, referenceNode);
+        }
+
+
+    </script>
+</body>
+</html>
+
