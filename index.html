@@ -84,6 +84,7 @@
             min-width: 365px;
             border-radius: 5px;
             overflow: hidden;
+            transition: 1s;
         }
        
         @media (min-width: 1400px) {
@@ -138,6 +139,7 @@
             padding-bottom: 80px;
             padding-left: 5px;
             padding-right: 5px;
+            transition: 0.5s;
         }
         .deal__col-head{
             border-top-left-radius: 15px;
@@ -172,6 +174,7 @@
             font-size: 12.5px;
             transition: 0.3s;
             cursor: all-scroll;
+            transition: 0.4s;
         }
         .deal:hover{background-color: rgba(0, 0, 0, 0.116);}
         .deal.clicked {background-color: #FA8BFF;background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);}
@@ -187,9 +190,9 @@
     
     <div class="deal__table">
         <div class="deal__row">
-              <div class="deal__col" data-bg="blue" id="column1" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+              <div class="deal__col" tabindex="-1" data-bg="blue" id="column1" ondrop="drop(this, event)" ondragover="allowDrop(event)">
                 <div class="deal__box" style="z-index:1000" draggable="true" id="box1" ondragstart="drag(event)">
-                    <div class="deal__col-head">
+                    <div class="deal__col-head" tabindex="1">
                         <div class="deal__head-title">Первичный контакт </div>
                         <div class="deal__head-price">
                             <span>9 шт.</span>
@@ -256,9 +259,9 @@
                   </div>
                 </div>
               </div>
-              <div class="deal__col" data-bg="light-yellow" id="column2" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+              <div class="deal__col" tabindex="-1" data-bg="light-yellow" id="column2" ondrop="drop(this, event)" ondragover="allowDrop(event)">
                 <div class="deal__box" draggable="true" id="box2" ondragstart="drag(event)" >
-                    <div class="deal__col-head">
+                    <div class="deal__col-head" tabindex="1">
                         <div class="deal__head-title">Первичный контакт </div>
                         <div class="deal__head-price">
                             <span>9 шт.</span>
@@ -304,9 +307,9 @@
                   </div>
                 </div>
               </div>
-              <div class="deal__col" data-bg="yellow" id="column3" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+              <div class="deal__col" tabindex="-1" data-bg="yellow" id="column3" ondrop="drop(this, event)" ondragover="allowDrop(event)">
                 <div class="deal__box" draggable="true" id="box3" ondragstart="drag(event)" >
-                    <div class="deal__col-head">
+                    <div class="deal__col-head" tabindex="1">
                         <div class="deal__head-title">Первичный контакт </div>
                         <div class="deal__head-price">
                             <span>9 шт.</span>
@@ -359,9 +362,9 @@
                   </div>
                 </div>
               </div>
-              <div class="deal__col" data-bg="orange" id="column4" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+              <div class="deal__col" tabindex="-1" data-bg="orange" id="column4" ondrop="drop(this, event)" ondragover="allowDrop(event)">
                 <div class="deal__box" draggable="true" id="box4" ondragstart="drag(event)" >
-                    <div class="deal__col-head">
+                    <div class="deal__col-head" tabindex="1">
                         <div class="deal__head-title">Первичный контакт </div>
                         <div class="deal__head-price">
                             <span>9 шт.</span>
@@ -414,9 +417,9 @@
                   </div>
                 </div>
               </div>
-              <div class="deal__col" data-bg="pink" id="column5" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+              <div class="deal__col" tabindex="-1" data-bg="pink" id="column5" ondrop="drop(this, event)" ondragover="allowDrop(event)">
                 <div class="deal__box" draggable="true" id="box5" ondragstart="drag(event)" >
-                    <div class="deal__col-head">
+                    <div class="deal__col-head" tabindex="1">
                         <div class="deal__head-title">Первичный контакт </div>
                         <div class="deal__head-price">
                             <span>9 шт.</span>
@@ -483,9 +486,9 @@
                   </div>
                 </div>
               </div>
-              <div class="deal__col" data-bg="green" id="column6" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+              <div class="deal__col" tabindex="-1" data-bg="green" id="column6" ondrop="drop(this, event)" ondragover="allowDrop(event)">
                 <div class="deal__box" draggable="true" id="box6" ondragstart="drag(event)" >
-                    <div class="deal__col-head">
+                    <div class="deal__col-head" tabindex="1">
                         <div class="deal__head-title">Первичный контакт </div>
                         <div class="deal__head-price">
                             <span>9 шт.</span>
@@ -552,9 +555,9 @@
                   </div>
                 </div>
               </div>
-              <div class="deal__col" data-bg="green" id="column7" ondrop="drop(this, event)" ondragover="allowDrop(event)">
+              <div class="deal__col" tabindex="-1" data-bg="green" id="column7" ondrop="drop(this, event)" ondragover="allowDrop(event)">
                 <div class="deal__box" draggable="true" id="box7" ondragstart="drag(event)" >
-                    <div class="deal__col-head">
+                    <div class="deal__col-head" tabindex="1">
                         <div class="deal__head-title">Первичный контакт </div>
                         <div class="deal__head-price">
                             <span>9 шт.</span>
@@ -639,6 +642,7 @@
                 }
             });
         }
+        
         // DRAG AN DROP 
         // allowDrop 
         function allowDrop(ev) {
@@ -677,7 +681,7 @@
                     var up = ev.target.getAttribute('id');
                 } 
                 
-                if (up == null || ev.target.className == "deal__box" || ev.target.className == "deal__col-head"  || ev.target.className == "deal__col") {
+                if (up == null || ev.target.className == "deal__col-wrap" || ev.target.className == "deal__col-head"  || ev.target.className == "deal__col") {
                     dest.appendChild(document.getElementById(data));
                 }else if(document.getElementById(up).className == "deal" || document.getElementById(up).className == "deal clicked"){
                     if(Array.prototype.indexOf.call(document.getElementById(data).parentNode.children, document.getElementById(data)) > Array.prototype.indexOf.call(document.getElementById(up).parentNode.children, document.getElementById(up))){
@@ -698,7 +702,6 @@
         function insertBefore(newNode, referenceNode) {
             referenceNode.parentNode.insertBefore(newNode, referenceNode);
         }
-
 
     </script>
 </body>
